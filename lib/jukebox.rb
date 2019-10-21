@@ -6,7 +6,7 @@ def help
   puts '- exit : exits this program'
 end
   
-def list
+def list(songs)
   songs.each_with_index {|song, index| puts "#{index+1}. #{song}"}
 end 
 
@@ -15,7 +15,7 @@ def play(song_array)
   user_response = gets.strip
   if  song_array.include?(user_response.to_s)
       puts "Playing #{user_response.to_s}"
-  elsif song_array[user_response.to_i - 1]
+  elsif (user_response.to_i - 1) <= song_array.length && user_response.length < song_array.length
       puts "Playing #{song_array[user_response.to_i - 1]}"
   else
    puts "Invalid input, please try again"
@@ -27,6 +27,7 @@ def exit_jukebox
 end
 
 def run(songs)
+  user_response = ""
   until user_response == 'exit'
     puts "Please enter a command:"
     user_response = gets.strip
